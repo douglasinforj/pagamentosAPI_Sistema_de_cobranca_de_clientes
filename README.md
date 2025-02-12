@@ -48,21 +48,21 @@ Um sistema completo para controle de pagamentos a receber de clientes, desenvolv
 ##  Configurar o Backend (Django)
 
 - Criar o ambiente virtual:
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
+  - python -m venv venv
+  - source venv/bin/activate  # Linux/Mac
+  - venv\Scripts\activate     # Windows
 
 - Instalar as dependências:
-pip install -r requirements.txt
+  - pip install -r requirements.txt
 
 - Criar o banco de dados e rodar as migrações:
-python manage.py migrate
+  - python manage.py migrate
 
 - Criar um superusuário para login:
-python manage.py createsuperuser
+  - python manage.py createsuperuser
 
 - Rodar o Servidor
-python manage.py runserver
+  - python manage.py runserver
 
 ## Endpoints da API
 
