@@ -76,7 +76,7 @@ python manage.py runserver
 
 ## Estrutura do Projeto Inicialmente
 
-"""
+`
 /backend
  ├── api
  │   ├── models.py      # Modelos do banco de dados
@@ -102,5 +102,4 @@ python manage.py runserver
  ├── package.json
  ├── index.js
 
-
-"""
+`
