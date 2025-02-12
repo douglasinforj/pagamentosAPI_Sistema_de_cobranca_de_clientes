@@ -69,37 +69,12 @@ python manage.py runserver
 
 
 
+## Contribuição
+
+Sinta-se à vontade para contribuir com melhorias! Basta abrir um Pull Request ou relatar problemas na aba Issues.
+
+## Licença
+
+Este projeto é distribuído sob a licença MIT.
 
 
-
-
-
-## Estrutura do Projeto Inicialmente
-
-`
-/backend
- ├── api
- │   ├── models.py      # Modelos do banco de dados
- │   ├── views.py       # Endpoints da API
- │   ├── serializers.py # Serializadores DRF
- │   ├── urls.py        # Rotas da API
- │   ├── middlewares.py # Logs e auditoria
- │   ├── tasks.py       # Agendador de tarefas
- │
- ├── payments
- │   ├── services.py    # Integração com PIX
- │
- ├── users
- │   ├── authentication.py # Login e permissões
- │
- ├── manage.py
- ├── README.md
-/frontend
- ├── src
- │   ├── components/
- │   ├── pages/
- │   ├── services/
- ├── package.json
- ├── index.js
-
-`
