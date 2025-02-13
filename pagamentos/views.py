@@ -62,3 +62,11 @@ class VendaViewSet(viewsets.ModelViewSet):
             "vencendo_hoje": VendaSerializer(vencendo_hoje, many=True).data,
             "vencidos": VendaSerializer(vencidos, many=True).data
         })
+    
+    # Metodo para marcar a venda como paga
+    @action(detail=True, methods=['post'])
+    def registrar_pagamento(self, request, pk=None):
+        venda = self.get_object()
+        venda.pago = True
+        venda.save()
+        return Response({"mensagem": "Pagamento registrado com sucesso"})
