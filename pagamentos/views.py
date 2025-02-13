@@ -20,7 +20,7 @@ from rest_framework.permissions import AllowAny
 
 class AuthViewSet(ViewSet):
 
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny]     #dando permissão a esta view Login ser acessada sem esta autenticado
 
     @action(detail=False, methods=['post'])
     def login(self, request):
