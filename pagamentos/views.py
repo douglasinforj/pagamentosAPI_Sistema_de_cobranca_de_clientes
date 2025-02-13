@@ -10,6 +10,28 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db.models import Q
 
+#login:
+from .serializers import LoginSerializer
+from rest_framework.viewsets import ViewSet
+from rest_framework import status
+from rest_framework.permissions import AllowAny
+
+
+
+class AuthViewSet(ViewSet):
+
+    permission_classes = [AllowAny]
+
+    @action(detail=False, methods=['post'])
+    def login(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+
 
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
