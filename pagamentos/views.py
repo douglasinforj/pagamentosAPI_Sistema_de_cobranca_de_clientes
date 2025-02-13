@@ -50,3 +50,15 @@ class VendaViewSet(viewsets.ModelViewSet):
         vendas_pendentes = Venda.objects.filter(Q(data_pagamento__gte=hoje) & Q(valor_total__gt=0))
         serializer = self.get_serializer(vendas_pendentes, many=True)
         return Response(serializer.data)
+    
+    # Alertas para pagamentos vencendo hoje ou ja vencidos
+    @action(detail=False, methods=['get'])
+    def alertas(self, request):
+        hoje = now().date()
+        vencendo_hoje = Venda.objects.filter(data_pagamento=hoje)
+        vencidos = Venda.objects.filter(data_pagamento__lt=hoje)
+
+        return Response({
+            "vencendo_hoje": VendaSerializer(vencendo_hoje, many=True).data,
+            "vencidos": VendaSerializer(vencidos, many=True).data
+        })
