@@ -14,7 +14,7 @@ from django.db.models import Q
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
-    #filtro clientes
+    #filtro clientes---------------------------------------
     filter_backends = [filters.SearchFilter]
     search_fields = ['nome', 'cpf_cnpj']
 
@@ -26,7 +26,7 @@ class VendaViewSet(viewsets.ModelViewSet):
     queryset = Venda.objects.all()
     serializer_class = VendaSerializer
 
-    #filtrando vendas por cliente e data
+    #filtrando vendas por cliente e data--------------------
     filter_backends = [filters.SearchFilter]
     search_fields = ['cliente_nome']
 
@@ -40,5 +40,5 @@ class VendaViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(cliente_id=cliente_id)
         if data_inicio and data_fim:
             queryset = queryset.filter(data_pagamento__range=[data_inicio, data_fim])
-            
+
         return queryset
