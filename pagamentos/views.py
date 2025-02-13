@@ -70,3 +70,14 @@ class VendaViewSet(viewsets.ModelViewSet):
         venda.pago = True
         venda.save()
         return Response({"mensagem": "Pagamento registrado com sucesso"})
+    
+
+    #Metodo Historico de Pagamentos por Cliente
+    @action(detail=False, methods=['get'])
+    def historico_pagamento(self, request):
+        cliente_id = request.query_params.get('cliente')
+        if not cliente_id:
+            return Response({"erro": "Informe o ID do Cliente"}, status=400)
+        
+        vendas_pagas = Venda.objects.filter(cliente_id=cliente_id, pago=True)
+        return Response(VendaSerializer(vendas_pagas, many=True).data)
