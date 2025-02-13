@@ -23,6 +23,7 @@ class  Venda(models.Model):
     data_compra = models.DateField(auto_now_add=True)
     data_pagamento = models.DateField()
     valor_total = models.DecimalField(max_digits=10, decimal_places=2)
+    pago = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Vendas {self.id} - {self.cliente.nome}'
