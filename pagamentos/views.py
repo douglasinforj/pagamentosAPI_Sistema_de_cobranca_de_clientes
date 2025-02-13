@@ -42,3 +42,11 @@ class VendaViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(data_pagamento__range=[data_inicio, data_fim])
 
         return queryset
+    
+    # listar Vendas Pendentes de Pagamento
+    @action(detail=False, methods=['get'])
+    def pendentes(self, request):
+        hoje = now().date()
+        vendas_pendentes = Venda.objects.filter(Q(data_pagamento__gte=hoje) & Q(valor_total__gt=0))
+        serializer = self.get_serializer(vendas_pendentes, many=True)
+        return Response(serializer.data)
