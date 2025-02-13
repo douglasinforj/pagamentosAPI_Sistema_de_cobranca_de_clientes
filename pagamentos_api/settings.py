@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'pagamentos',
     'rest_framework_simplejwt',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -138,10 +139,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',  # Habilita login na interface do DRF
+        'rest_framework.authentication.BasicAuthentication',  # Login via prompt de senha no DRF UI
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-       'rest_framework.permissions.IsAuthenticated',  # Exige autenticação para todos os endpoints
+       #'rest_framework.permissions.IsAuthenticated',  # Exige autenticação para todos os endpoints
     ),
 }
 
