@@ -4,6 +4,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+from datetime import timedelta
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -139,6 +141,13 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',  # Exige autenticação para todos os endpoints
+       'rest_framework.permissions.IsAuthenticated',  # Exige autenticação para todos os endpoints
     ),
+}
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),  # Tempo de expiração do token
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7), # Tempo do refresh token
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
